@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Task Detail</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" type="text/css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.css}"/>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Task Detail</h1>
+
+    <div id="taskForm">
+        <form action="detail.html" method="post" class="form-horizontal"
+              th:action="@{/tasks/{id}(id=*{id})}" th:object="${taskForm}">
+            <div class="form-group">
+                <label for="title" class="col-sm-2 control-label">Title</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="title" value="Create Sample Application" th:field="*{title}"/>
+                    <span class="text-error" th:errors="*{title}">error message</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="detail" class="col-sm-2 control-label">Detail</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="detail" th:field="*{detail}">
+                    </textarea>
+                    <span class="text-error" th:errors="*{detail}">error message</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="detail" class="col-sm-2 control-label">Deadline</label>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" id="detail" value="2017-03-10" th:field="*{deadline}"/>
+                    <span class="text-error" th:errors="*{deadline}">error message</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="finished" class="col-sm-2 control-label">Finished ?</label>
+                <div class="col-sm-2">
+                    <input type="checkbox" id="finished" th:field="*{finished}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="createdAt" class="col-sm-2 control-label">Created Datetime</label>
+                <div class="col-sm-4">
+                    <input id="createdAt" class="form-control" value="2017-02-28 15:00:01" th:field="*{createdAt}" readonly="readonly"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="updatedAt" class="col-sm-2 control-label">Updated Datetime</label>
+                <div class="col-sm-4">
+                    <input id="updatedAt" class="form-control" value="2017-02-28 15:00:01" th:field="*{updatedAt}" readonly="readonly"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="hidden" th:field="*{version}"/>
+                    <button type="submit" class="btn btn-default" name="update">Update</button>
+                    <button type="submit" class="btn btn-default" name="delete">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <hr/>
+
+    <a href="list.html" class="btn btn-default" th:href="@{/tasks}">Task List</a>
+
+</div>
+</body>
+</html>
