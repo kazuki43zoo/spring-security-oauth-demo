@@ -63,7 +63,6 @@ public class TaskController {
 	String update(@PathVariable long id, @Validated TaskForm form, BindingResult bindingResult,
 			Model model, RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
-			model.addAttribute(repository.findOne(id));
 			return "task/detail";
 		}
 		Task task = new Task();
